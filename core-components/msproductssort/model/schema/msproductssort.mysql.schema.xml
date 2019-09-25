@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model package="msproductssort" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    <object class="msProductsSort" table="ms2_products_sort" extends="xPDOSimpleObject">
+        <field key="sortproduct_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="index" />
+        <field key="sortcategory_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="index" />
+        <field key="sortproduct_idx" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="index" />
+
+        <index alias="sortproducts" name="sortproducts" primary="false" unique="true" type="BTREE">
+            <column key="sortproduct_id" length="" collation="A" null="false"/>
+            <column key="sortcategory_id" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Resource" class="msProduct" local="sortproduct_id" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Resource" class="msCategory" local="sortcategory_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+</model>
